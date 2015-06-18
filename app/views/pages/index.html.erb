@@ -1,0 +1,30 @@
+
+
+<%= form_tag(pages_path, method: "get") do %>
+		<%= flash.now[:error] %> 
+    <%= label_tag :zip, "ENTER YOUR ZIPCODE TO FIND YOUR WEATHER"  %><br>
+    <%= text_field_tag :zip,'', placeholder: "e.g. 22042 " %>
+    <%= submit_tag "Get Weather" %>
+<% end %>
+
+
+<% if @weather_lookup.temperature.present? %>
+
+<%= @weather_lookup.temperature %>
+</br>
+
+
+<% @categories.each do |category| %>
+	
+<% if category.min_temp == nil %>
+	<% 'No minimum temperature in category object' %>
+	<% elsif category.max_temp > @weather_lookup.temperature && category.min_temp < @weather_lookup.temperature %>
+		<% category.shirts.each do |shirt| %>
+			<%= shirt.name %>
+			<% end%>
+	<% else %>
+	<% 'There are no clothes appropriate for the weather' %>
+	<% end %>
+	<%end %>
+
+<% end %>

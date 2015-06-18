@@ -1,0 +1,14 @@
+<h2>Shirts Page</h2>
+ <br/>
+
+<%= link_to 'Add Shirt Page', new_shirt_path %>
+
+ <% @shirts.each do |shirt| %>
+<li>
+ <%= link_to "#{shirt.name}", shirt %> <%= link_to "Edit", edit_shirt_path(shirt) %> <%= link_to "Delete", shirt_path(shirt), 
+  method: :delete,
+  data: { confirm: 'Are you sure?' } %></li>
+</li>
+<br/>
+
+<%end %>
